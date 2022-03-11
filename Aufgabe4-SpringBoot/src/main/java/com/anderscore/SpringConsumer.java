@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringConsumer {
 
-    @KafkaListener(topics = "gfuHello")
+    @KafkaListener(topics = "HelloTopic")
     public void processMessage(String content) {
         System.out.println("Got message: "+ content);
     }

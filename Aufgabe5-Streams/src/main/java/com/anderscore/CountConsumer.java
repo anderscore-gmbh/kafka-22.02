@@ -7,8 +7,9 @@ import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Properties;
+
+import static java.util.Collections.singletonList;
 
 public class CountConsumer extends Thread{
     private final Properties props = new Properties();
@@ -29,7 +30,7 @@ public class CountConsumer extends Thread{
 
 
     public void run() {
-        consumer.subscribe(Arrays.asList("WordsWithCountsTopic"));
+        consumer.subscribe(singletonList("WordsWithCountsTopic"));
         while(true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
             records.forEach(record -> System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value()));

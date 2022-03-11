@@ -22,14 +22,16 @@ public class WordsProducer extends Thread {
 
     public void run() {
         String [] words = {"Wer", "Wie", "Was", "Wieso", "Weshalb", "Warum"};
+
         while(true){
             for(String word:words) {
                 if (Math.random() >= 0.5) {
                     ProducerRecord<String,String> helloMsg
-                            = new ProducerRecord<>("gfuWords", UUID.randomUUID().toString(), word);
+                            = new ProducerRecord<>("TextLinesTopic", UUID.randomUUID().toString(), word);
                     producer.send(helloMsg);
                 }
             }
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

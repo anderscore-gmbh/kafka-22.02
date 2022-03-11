@@ -11,14 +11,14 @@ import java.util.UUID;
 public class HelloController {
 
     @Autowired
-    KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     private int messageCount = 0;
 
     @RequestMapping("/")
     public String index() {
         messageCount++;
-        kafkaTemplate.send("gfuHello", UUID.randomUUID().toString(),"Hello from spring #" + messageCount);
+        kafkaTemplate.send("HelloTopic", UUID.randomUUID().toString(),"Hello from spring #" + messageCount);
         return "Sending Kafka message...#"+messageCount;
     }
 

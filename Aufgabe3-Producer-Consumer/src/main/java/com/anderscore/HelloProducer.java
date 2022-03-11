@@ -20,7 +20,7 @@ public class HelloProducer {
     }
 
     public void produce() {
-        ProducerRecord<String,String> helloMsg = new ProducerRecord<>("gfuHello","Hello Key", "Hello Value");
+        ProducerRecord<String,String> helloMsg = new ProducerRecord<>("HelloTopic","Hello Key", "Hello Value");
         producer.send(helloMsg);
         producer.close();
     }
